@@ -18,7 +18,7 @@ describe("dashboard spec", () => {
 
     // Sign In
     cy.get("#auth-link").click();
-    cy.signIn("test", "test");
+    cy.signIn("test", "12345678");
 
     // Mock launch data
     cy.intercept("GET", "/api/*", {
@@ -29,7 +29,7 @@ describe("dashboard spec", () => {
     });
 
     // Navigate to Dashboard
-    cy.get("#dashboard-link").click();
+    // cy.get("#dashboard-link").click();
     cy.get("h1").should("contain", "My Dashboard");
 
     // Verify no accessibility violations

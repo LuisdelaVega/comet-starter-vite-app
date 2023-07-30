@@ -21,10 +21,10 @@ describe("signin spec", () => {
     cy.checkA11y();
 
     // Login
-    cy.signIn("test", "test");
+    cy.signIn("test", "12345678");
 
     // Verify Homepage after signin
-    cy.get("h1").should("contain", "Welcome John Doe");
+    cy.get("h1").should("contain", "My Dashboard");
     cy.get("#sign-in-alert").should("not.exist");
   });
 });
