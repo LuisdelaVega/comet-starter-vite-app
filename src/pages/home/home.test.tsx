@@ -21,7 +21,7 @@ describe("Home", () => {
   });
 
   test("should render with mock data", async () => {
-    jest.spyOn(useAuthMock, "default").mockReturnValue({
+    jest.spyOn(useAuthMock, "useAuth").mockReturnValue({
       isSignedIn: true,
       currentUserData: { firstName: "John", lastName: "Doe" } as User,
       error: null,

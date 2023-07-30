@@ -22,7 +22,7 @@ describe("Header", () => {
   });
 
   test("should navigate away from home", async () => {
-    jest.spyOn(useAuthMock, "default").mockReturnValue({
+    jest.spyOn(useAuthMock, "useAuth").mockReturnValue({
       isSignedIn: true,
       currentUserData: {} as User,
       error: null,
@@ -43,7 +43,7 @@ describe("Header", () => {
       value: new URL(window.location.href),
     });
 
-    jest.spyOn(useAuthMock, "default").mockReturnValue({
+    jest.spyOn(useAuthMock, "useAuth").mockReturnValue({
       isSignedIn: false,
       currentUserData: {} as User,
       error: null,
@@ -63,7 +63,7 @@ describe("Header", () => {
       value: new URL(window.location.href),
     });
 
-    jest.spyOn(useAuthMock, "default").mockReturnValue({
+    jest.spyOn(useAuthMock, "useAuth").mockReturnValue({
       isSignedIn: true,
       currentUserData: {} as User,
       error: null,

@@ -42,7 +42,7 @@ describe("Dashboard", () => {
       }),
     );
 
-    jest.spyOn(useAuthMock, "default").mockReturnValue({
+    jest.spyOn(useAuthMock, "useAuth").mockReturnValue({
       isSignedIn: true,
       currentUserData: {} as User,
       error: null,

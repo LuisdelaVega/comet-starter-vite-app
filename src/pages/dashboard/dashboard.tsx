@@ -1,7 +1,7 @@
 import { Spinner } from "@metrostar/comet-extras";
 import { Card, CardBody } from "@metrostar/comet-uswds";
 import ErrorNotification from "@src/components/error-notification/error-notification";
-import useAuth from "@src/hooks/use-auth";
+import { useAuth } from "@src/hooks/use-auth";
 import { Launch } from "@src/types/launch";
 import axios from "@src/utils/axios";
 import { useQuery } from "@tanstack/react-query";

@@ -7,25 +7,31 @@ import { SignIn } from "@src/pages/sign-in/sign-in";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactElement } from "react";
 import { Route, Routes } from "react-router";
-import { RecoilRoot } from "recoil";
+import { useAuth } from "./hooks/use-auth";
 
 const queryClient = new QueryClient();
 
-export const App = (): ReactElement => (
-  <RecoilRoot>
+export const App = (): ReactElement => {
+  const { isSignedIn } = useAuth();
+
+  return (
     <QueryClientProvider client={queryClient}>
       <div>
         <Header />
         <main id="mainSection" className="usa-section">
           <Routes>
+            <Route path="/*" element={<Home />} />
             <Route path="/signin" element={<SignIn />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/details/:id" element={<Details />} />
-            <Route path="/" element={<Home />} />
+            {isSignedIn && (
+              <>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/details/:id" element={<Details />} />
+              </>
+            )}
           </Routes>
         </main>
         <Footer />
       </div>
     </QueryClientProvider>
-  </RecoilRoot>
-);
+  );
+};

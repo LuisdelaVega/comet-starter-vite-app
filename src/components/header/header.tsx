@@ -1,5 +1,5 @@
 import { Banner, Icon, Search } from "@metrostar/comet-uswds";
-import useAuth from "@src/hooks/use-auth";
+import { useAuth } from "@src/hooks/use-auth";
 import { APP_TITLE } from "@src/utils/constants";
 import navigation from "@uswds/uswds/js/usa-header";
 import { ReactElement, SyntheticEvent, useEffect, useState } from "react";
@@ -7,7 +7,6 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
 export const Header = (): ReactElement => {
   const [showMenu, setShowMenu] = useState(false);
-
   const navigate = useNavigate();
   const location = useLocation();
   const { isSignedIn, signOut } = useAuth();

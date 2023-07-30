@@ -33,7 +33,7 @@ describe("SignIn", () => {
 
   test("should simulate a login attempt with blank username", async () => {
     const { baseElement } = render(signInComponent);
-    await userEvent.type(screen.getByLabelText("Password"), "b");
+    await userEvent.type(screen.getByLabelText("Password"), "12345678");
     await userEvent.click(
       screen.getByText("Sign In", { selector: "button[type=submit]" }),
     );
@@ -49,8 +49,18 @@ describe("SignIn", () => {
     expect(baseElement.querySelectorAll(".usa-error-message").length).toBe(1);
   });
 
+  test("should simulate a login attempt with a password that does not meet the minimum length requirement", async () => {
+    const { baseElement } = render(signInComponent);
+    await userEvent.type(screen.getByLabelText("Username"), "a");
+    await userEvent.type(screen.getByLabelText("Password"), "123");
+    await userEvent.click(
+      screen.getByText("Sign In", { selector: "button[type=submit]" }),
+    );
+    expect(baseElement.querySelectorAll(".usa-error-message").length).toBe(1);
+  });
+
   test("should simulate a successful login attempt", async () => {
-    jest.spyOn(useAuthMock, "default").mockReturnValue({
+    jest.spyOn(useAuthMock, "useAuth").mockReturnValue({
       isSignedIn: false,
       currentUserData: {} as User,
       error: null,
@@ -60,7 +70,7 @@ describe("SignIn", () => {
 
     const { baseElement } = render(signInComponent);
     await userEvent.type(screen.getByLabelText("Username"), "a");
-    await userEvent.type(screen.getByLabelText("Password"), "b");
+    await userEvent.type(screen.getByLabelText("Password"), "12345678");
 
     await act(async () => {
       await userEvent.click(
@@ -71,7 +81,7 @@ describe("SignIn", () => {
   });
 
   test("should simulate a successful login attempt when signed in", async () => {
-    jest.spyOn(useAuthMock, "default").mockReturnValue({
+    jest.spyOn(useAuthMock, "useAuth").mockReturnValue({
       isSignedIn: true,
       currentUserData: {} as User,
       error: null,
@@ -81,7 +91,7 @@ describe("SignIn", () => {
 
     const { baseElement } = render(signInComponent);
     await userEvent.type(screen.getByLabelText("Username"), "a");
-    await userEvent.type(screen.getByLabelText("Password"), "b");
+    await userEvent.type(screen.getByLabelText("Password"), "12345678");
 
     await act(async () => {
       await userEvent.click(
@@ -92,7 +102,7 @@ describe("SignIn", () => {
   });
 
   test("should simulate an unsuccessful login attempt", async () => {
-    jest.spyOn(useAuthMock, "default").mockReturnValue({
+    jest.spyOn(useAuthMock, "useAuth").mockReturnValue({
       isSignedIn: false,
       currentUserData: {} as User,
       error: "Error",
@@ -102,7 +112,7 @@ describe("SignIn", () => {
 
     const { baseElement } = render(signInComponent);
     await userEvent.type(screen.getByLabelText("Username"), "a");
-    await userEvent.type(screen.getByLabelText("Password"), "b");
+    await userEvent.type(screen.getByLabelText("Password"), "12345678");
 
     await act(async () => {
       await userEvent.click(

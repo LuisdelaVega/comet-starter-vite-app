@@ -77,3 +77,11 @@ npm run e2e
 3. Commit your Changes (`git commit -m 'Added new feature_a'`)
 4. Push to the Branch (`git push origin feature_a`)
 5. Open a Pull Request
+
+## Notes
+
+### When to use `EnvironmentPlugin`?
+
+Use `EnvironmentPlugin` to expose specific values in from your `.env` files through `process.env` instead of the vite provided `import.meta.env` way.
+
+You would want to use `EnvironmentPlugin` when you're creating unit test for code that tries to read a value through `import.meta.env`.

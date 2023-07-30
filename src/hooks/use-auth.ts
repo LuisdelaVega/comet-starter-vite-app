@@ -4,7 +4,7 @@ import { userData } from "../data/user";
 import { currentUser, signedIn } from "../store";
 import { User } from "../types/user";
 
-const useAuth = () => {
+export const useAuth = () => {
   const [isSignedIn, setIsSignedIn] = useRecoilState<boolean>(signedIn);
   const [error] = useState<string | null>();
   const [currentUserData, setCurrentUserDate] =
@@ -22,5 +22,3 @@ const useAuth = () => {
 
   return { isSignedIn, currentUserData, error, signIn, signOut };
 };
-
-export default useAuth;
